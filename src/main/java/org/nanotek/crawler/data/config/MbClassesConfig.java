@@ -29,8 +29,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
+/*import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;*/
 
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -56,9 +56,11 @@ public class MbClassesConfig {
 	@Lazy(true)
 	ObjectMapper objectMapper;
 
-	@Autowired
-	@Lazy(true)
-	EurekaClient eurekaClient;
+	/*
+	 * @Autowired
+	 * 
+	 * @Lazy(true) EurekaClient eurekaClient;
+	 */
 	
 	Optional<Root> rootMapping ;
 
@@ -81,8 +83,9 @@ public class MbClassesConfig {
 	
 	public Optional<Root> getActuatorMappings() {
 		
-		InstanceInfo info =  eurekaClient.getNextServerFromEureka("acx-data-service", false);
-		String uri =  info.getHomePageUrl() + "actuator/mappings";
+		//InstanceInfo info =  eurekaClient.getNextServerFromEureka("acx-data-service", false);
+		//String uri =  info.getHomePageUrl() + "actuator/mappings";
+		String uri =  "http://127.0.0.1:8086" + "actuator/mappings";
 		ResponseEntity<Root> paramMappings=restTemplate.getForEntity(uri, Root.class);
 		rootMapping = Optional.ofNullable( paramMappings.getBody());
 		return rootMapping;
@@ -126,18 +129,19 @@ public class MbClassesConfig {
 	public Map<Class<?>, String> processMetaClasses(Map<String, String> urlBaseMapping) {
 		Map<Class<?> , String> acxClassCache = new HashMap<>();
 		this.urlBaseMapping = urlBaseMapping;
-		InstanceInfo info =  eurekaClient.getNextServerFromEureka("crawler-data-service-acx", false);
+		//InstanceInfo info =  eurekaClient.getNextServerFromEureka("crawler-data-service-acx", false);
 		urlBaseMapping
 		.forEach((x , y)->{
 			Path p = Paths.get(y, new String[0]);
 			Path p1 = p.getParent();
-			String uri =  info.getHomePageUrl() +  p1.getName(0) + "/metaclass";
+			//String uri =  info.getHomePageUrl() +  p1.getName(0) + "/metaclass";
+			String uri =  "http://127.0.0.1:8086" + "/metaclass";
 			String theMetaResponse = restTemplate.getForObject(uri, String.class);
 			MetaClass clazz;
 			try {
 				clazz = objectMapper.readValue(theMetaResponse, MetaClass.class);
 				Class<?> base = proccessMetaClass(clazz);
-				acxClassCache.put(base ,  info.getHomePageUrl() +  p1.getName(0));
+				acxClassCache.put(base , "http://127.0.0.1:8086/acx-data-service");// info.getHomePageUrl() +  p1.getName(0));
 			} catch (Exception e) {
 				log.info("error" , e);
 				throw new RuntimeException(e);
