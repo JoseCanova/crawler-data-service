@@ -141,7 +141,7 @@ public class MbClassesConfig {
 			try {
 				clazz = objectMapper.readValue(theMetaResponse, MetaClass.class);
 				Class<?> base = proccessMetaClass(clazz);
-				acxClassCache.put(base , "http://127.0.0.1:8086/acx-data-service");// info.getHomePageUrl() +  p1.getName(0));
+				acxClassCache.put(base , "http://127.0.0.1:8086");// info.getHomePageUrl() +  p1.getName(0));
 			} catch (Exception e) {
 				log.info("error" , e);
 				throw new RuntimeException(e);
