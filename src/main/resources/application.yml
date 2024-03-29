@@ -13,8 +13,6 @@ spring:
       client:
         enable: true
         auto-registration: true
-  application:
-    name: mb-data-service
   activemq:
    broker-url: tcp://localhost:61616
   datasource:
