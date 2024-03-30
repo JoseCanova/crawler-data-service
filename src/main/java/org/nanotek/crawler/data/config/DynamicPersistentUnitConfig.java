@@ -229,7 +229,7 @@ public class DynamicPersistentUnitConfig implements ApplicationContextAware{
 					persistenceUnityClassesConfig.getTypeCache().insert(injectionClassLoader, theClass.getSimpleName(), clazz1);
 					Optional<Class<?>> idClass = getIdClass(clazz1);
 					idClass.ifPresent(idc -> {
-						Class<?> repClass = repoConfig.prepareReppositoryForClass(clazz1, idc, injectionClassLoader)	;
+						Class<?> repClass = repoConfig.prepareReppositoryForClass(clazz1, idc, injectionClassLoader);
 						repoConfig.put(clazz1.getSimpleName(), repClass);
 						ControllerClassConfig ccc = controllerClassConfig();
 						try {
