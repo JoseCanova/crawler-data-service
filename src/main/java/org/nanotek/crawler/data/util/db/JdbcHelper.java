@@ -369,6 +369,9 @@ public class JdbcHelper {
 	@Autowired
 	ObjectMapper mapper;
 	
+	/*
+	 * TODO: Check anotations for property ID and cyclic serialization on one to many relations.
+	 */
 	private Builder processIdProperty(Builder bd1, MetaDataAttribute m , 
 				String nFname, Class<?> ca, AnnotationDescription columnAnnotation, AnnotationDescription[] validationAnnotations, MetaClass mc) {
 		String fieldname = nFname;
