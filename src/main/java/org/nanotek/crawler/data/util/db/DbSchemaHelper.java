@@ -484,7 +484,7 @@ public class DbSchemaHelper {
 		.forEach(f ->{
 			processForeignKey(f , meta);
 		});
-		meta.setTable(t);
+		meta.getRdbmsClass(). setTable(t);
 		meta.setClassName(t.getFullName());
 		String newName = processNameTranslationStrategy(t.getName());
 		meta.setClassName(newName);
@@ -530,12 +530,12 @@ public class DbSchemaHelper {
 		meta.getMetaRelationsClasses()
 		.stream()
 		.forEach(c -> {
-			if(c.getPrimaryKeyTable().equals(meta.getTable())) {
+			if(c.getPrimaryKeyTable().equals(meta.getRdbmsClass(). getTable())) {
 				c.getColumns()
 				.stream()
 				.forEach(cc ->{
 					if (cc.getName().equalsIgnoreCase(md.getColumnName())) {
-						meta.addReferencedTable(c.getReferencedTable());
+						meta.getRdbmsClass(). addReferencedTable(c.getReferencedTable());
 					}
 				});
 			}

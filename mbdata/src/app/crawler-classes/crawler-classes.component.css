@@ -20,12 +20,12 @@ td .atributo{
 .exemploLink{
 	color: black!;
 	background: yellow;
-};
+}
 
 .botaoTopo{
 	vertical-align: top!;
-};
+}
 
 .resizeable {
 	resize: both;
-};
+}

@@ -25,20 +25,17 @@ public class MetaClass implements IClass {
 	private boolean hasPrimraryKey;
 
 	@JsonIgnore
-	protected Table table;
-
-	@JsonIgnore
 	protected List<MetaRelationClass> metaRelationsClasses;
 
 	protected MetaIdentity identity;
 	
 	@JsonIgnore
-	private List<Table> referencedTables;
+	protected RdbmsClass rdbmsClass;
 	
 	public MetaClass() {
 		super();
-		this.referencedTables=new ArrayList<>();
 		metaRelationsClasses = new ArrayList<> ();
+		this.rdbmsClass = new RdbmsClass();
 	}
 
 	public MetaClass(String tableName, String className, 
@@ -47,7 +44,7 @@ public class MetaClass implements IClass {
 		this.tableName = tableName;
 		this.className = className;
 		this.metaAttributes = metaAttributes;
-		this.referencedTables=new ArrayList<>();
+		this.rdbmsClass = new RdbmsClass();
 	}
 
 	
@@ -57,8 +54,7 @@ public class MetaClass implements IClass {
 		super();
 		this.tableName = tableName;
 		this.className = className;
-		this.table = table;
-		this.referencedTables=new ArrayList<>();
+		this.rdbmsClass = new RdbmsClass(table);
 	}
 
 	@Override
@@ -106,12 +102,13 @@ public class MetaClass implements IClass {
 		this.hasPrimraryKey = hasPrimeraryKey;
 	}
 
-	public void setTable(Table t) {
-		this.table = t;
+	
+	public RdbmsClass getRdbmsClass() {
+		return rdbmsClass;
 	}
 
-	public Table getTable() {
-		return table;
+	public void setRdbmsClass(RdbmsClass rdbmsClass) {
+		this.rdbmsClass = rdbmsClass;
 	}
 
 	public void addMetaRelationClass(MetaRelationClass mrc) {
@@ -138,12 +135,5 @@ public class MetaClass implements IClass {
 	public void setMetaRelationsClasses(List<MetaRelationClass> metaRelationsClasses) {
 		this.metaRelationsClasses = metaRelationsClasses;
 	}
-
-	public void addReferencedTable(Table referencedTable) {
-		this.referencedTables.add(referencedTable);
-	}
-
-	public List<Table> getReferencedTables() {
-		return referencedTables;
-	}
+	
 }

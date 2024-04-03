@@ -250,7 +250,7 @@ export class ModelGraphComponent implements OnInit {
 						let subsequence = <Array<string>>str.match("_[0-9]+");
 						if (subsequence && subsequence.length > 0){ 
 							str = str
-								.replace(
+								    .replace(
 										subsequence[0],subsequence[0].substring(1));
 						}
 					}
