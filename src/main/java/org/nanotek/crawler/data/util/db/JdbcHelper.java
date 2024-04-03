@@ -35,12 +35,12 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Type;
 import org.nanotek.crawler.Base;
 import org.nanotek.crawler.BaseEntity;
-import org.nanotek.crawler.data.config.meta.IClass;
-import org.nanotek.crawler.data.config.meta.IDataAttribute;
-import org.nanotek.crawler.data.config.meta.MetaClass;
-import org.nanotek.crawler.data.config.meta.MetaDataAttribute;
-import org.nanotek.crawler.data.config.meta.MetaIdentity;
-import org.nanotek.crawler.data.config.meta.MetaRelationClass;
+import org.nanotek.crawler.data.domain.meta.IClass;
+import org.nanotek.crawler.data.domain.meta.IDataAttribute;
+import org.nanotek.crawler.data.domain.meta.MetaClass;
+import org.nanotek.crawler.data.domain.meta.MetaDataAttribute;
+import org.nanotek.crawler.data.domain.meta.MetaIdentity;
+import org.nanotek.crawler.data.domain.meta.MetaRelationClass;
 import org.nanotek.crawler.data.util.db.support.MetaClassPostProcessor;
 import org.nanotek.crawler.legacy.util.Holder;
 import org.nanotek.crawler.service.GraphRelationsConfig;
@@ -394,7 +394,7 @@ public class JdbcHelper {
 		return new AnnotationDescription[] {
 				AnnotationDescription.Builder.ofType(Id.class)
 						.build(),
-						AnnotationDescription.Builder.ofType(org.nanotek.crawler.data.config.meta.Id.class)
+						AnnotationDescription.Builder.ofType(org.nanotek.crawler.data.domain.meta.Id.class)
 						.build()
 						}; 
 	}

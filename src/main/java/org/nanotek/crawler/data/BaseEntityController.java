@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import org.nanotek.crawler.BaseEntity;
 import org.nanotek.crawler.SearchContainer;
-import org.nanotek.crawler.data.config.meta.IClass;
+import org.nanotek.crawler.data.domain.meta.IClass;
 import org.nanotek.crawler.data.stereotype.EntityBaseRepository;
 import org.nanotek.crawler.data.util.Holder;
 import org.nanotek.crawler.data.util.db.JdbcHelper;

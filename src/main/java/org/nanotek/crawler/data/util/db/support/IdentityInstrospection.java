@@ -3,7 +3,7 @@ package org.nanotek.crawler.data.util.db.support;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.nanotek.crawler.data.config.meta.MetaDataAttribute;
+import org.nanotek.crawler.data.domain.meta.MetaDataAttribute;
 import org.nanotek.crawler.data.stereotype.Introspection;
 
 import lombok.AllArgsConstructor;

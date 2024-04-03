@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.Valid;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.nanotek.crawler.data.config.meta.MetaClass;
+import org.nanotek.crawler.data.domain.meta.MetaClass;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

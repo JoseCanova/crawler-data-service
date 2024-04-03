@@ -18,7 +18,7 @@ import javax.persistence.spi.PersistenceProvider;
 import javax.sql.DataSource;
 
 import org.hibernate.cfg.Environment;
-import org.nanotek.crawler.data.config.meta.MetaClass;
+import org.nanotek.crawler.data.domain.meta.MetaClass;
 import org.nanotek.crawler.data.stereotype.EntityBaseRepositoryImpl;
 import org.nanotek.crawler.data.util.InstancePopulator;
 import org.nanotek.crawler.data.util.SearchContextPayloadFilter;
