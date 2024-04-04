@@ -26,6 +26,10 @@ public class MetaClassClassifier implements Classifier<MetaClass> {
 	public void setHasPrimaryKey(boolean hasPrimaryKey) {
 		this.hasPrimaryKey = hasPrimaryKey;
 	}
+	
+	public void hasPrimaryKey(boolean b) {
+		this.hasPrimaryKey = b;
+	}
 
 	public List<MetaRelationClass> getMetaRelationsClasses() {
 		return metaRelationsClasses;
@@ -35,7 +39,10 @@ public class MetaClassClassifier implements Classifier<MetaClass> {
 		this.metaRelationsClasses = metaRelationsClasses;
 	}
 	
-	
+	public void addMetaRelationClass(MetaRelationClass mrc) {
+		this.metaRelationsClasses.add(mrc);
+		
+	}
 
 
 }

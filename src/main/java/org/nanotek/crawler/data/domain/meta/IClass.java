@@ -16,10 +16,5 @@ public interface IClass {
 
 	boolean addMetaAttribute(MetaDataAttribute attr);
 
-	void hasPrimaryKey(boolean b);
-
-	boolean isHasPrimeraryKey();
-
-	void setHasPrimeraryKey(boolean hasPrimeraryKey);
 
 }

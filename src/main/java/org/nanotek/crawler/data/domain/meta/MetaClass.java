@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import schemacrawler.schema.Table;
 
+/*
+ * TODO: refactor code of definition for IdPrimaryKey classification.
+ */
 @JsonInclude(value = Include.NON_NULL)
 public class MetaClass implements IClass {
 
@@ -21,12 +24,13 @@ public class MetaClass implements IClass {
 	
 	protected List<MetaDataAttribute> metaAttributes = new ArrayList<>();
 
-	@JsonIgnore
-	private boolean hasPrimraryKey;
-
-	@JsonIgnore
-	protected List<MetaRelationClass> metaRelationsClasses;
-
+	protected MetaClassClassifier classifier;
+	
+	/*
+	 * @JsonIgnore private boolean hasPrimraryKey;
+	 * 
+	 * @JsonIgnore protected List<MetaRelationClass> metaRelationsClasses;
+	 */
 	protected MetaIdentity identity;
 	
 	@JsonIgnore
@@ -34,7 +38,7 @@ public class MetaClass implements IClass {
 	
 	public MetaClass() {
 		super();
-		metaRelationsClasses = new ArrayList<> ();
+		classifier = new MetaClassClassifier ();
 		this.rdbmsClass = new RdbmsClass();
 	}
 
@@ -45,6 +49,7 @@ public class MetaClass implements IClass {
 		this.className = className;
 		this.metaAttributes = metaAttributes;
 		this.rdbmsClass = new RdbmsClass();
+		classifier = new MetaClassClassifier ();
 	}
 
 	
@@ -87,21 +92,9 @@ public class MetaClass implements IClass {
 		return metaAttributes.add(attr);
 	}
 
-	@Override
-	public void hasPrimaryKey(boolean b) {
-		this.hasPrimraryKey = b;
-	}
-
-	@Override
-	public boolean isHasPrimeraryKey() {
+	public boolean isHasPrimaryKey() {
 		return  metaAttributes !=null && metaAttributes.stream().filter(a -> a.isId()).count() > 0;
 	}
-
-	@Override
-	public void setHasPrimeraryKey(boolean hasPrimeraryKey) {
-		this.hasPrimraryKey = hasPrimeraryKey;
-	}
-
 	
 	public RdbmsClass getRdbmsClass() {
 		return rdbmsClass;
@@ -112,12 +105,12 @@ public class MetaClass implements IClass {
 	}
 
 	public void addMetaRelationClass(MetaRelationClass mrc) {
-		this.metaRelationsClasses.add(mrc);
+		this.classifier.addMetaRelationClass(mrc);
 		
 	}
 
 	public List<MetaRelationClass> getMetaRelationsClasses() {
-		return metaRelationsClasses;
+		return this.classifier.getMetaRelationsClasses();
 	}
 
 	public MetaIdentity getIdentity() {
@@ -133,7 +126,7 @@ public class MetaClass implements IClass {
 	}
 
 	public void setMetaRelationsClasses(List<MetaRelationClass> metaRelationsClasses) {
-		this.metaRelationsClasses = metaRelationsClasses;
+		this.classifier.setMetaRelationsClasses(metaRelationsClasses);
 	}
 	
 }

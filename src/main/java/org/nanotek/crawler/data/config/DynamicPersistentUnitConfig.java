@@ -212,7 +212,7 @@ public class DynamicPersistentUnitConfig implements ApplicationContextAware{
 		List <MetaClass> classMap  = helper.getClassMaps();
 
 		classMap 
-		.stream().filter(cm -> cm.isHasPrimeraryKey())
+		.stream().filter(cm -> cm.isHasPrimaryKey())
 		.filter(cm -> !cm.getClass().equals(java.sql.RowId.class))
 		.forEach(cm ->{
 			try {
