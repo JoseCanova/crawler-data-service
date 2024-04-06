@@ -24,6 +24,7 @@ public class MetaClass implements IClass {
 	
 	protected List<MetaDataAttribute> metaAttributes = new ArrayList<>();
 
+	@JsonIgnore
 	protected MetaClassClassifier classifier;
 	
 	/*
@@ -60,6 +61,7 @@ public class MetaClass implements IClass {
 		this.tableName = tableName;
 		this.className = className;
 		this.rdbmsClass = new RdbmsClass(table);
+		classifier = new MetaClassClassifier ();
 	}
 
 	@Override
