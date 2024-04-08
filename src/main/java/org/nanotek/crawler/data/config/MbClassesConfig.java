@@ -9,9 +9,9 @@ import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.nanotek.crawler.Base;
-import org.nanotek.crawler.data.config.meta.Id;
-import org.nanotek.crawler.data.config.meta.MetaClass;
-import org.nanotek.crawler.data.config.meta.MetaDataAttribute;
+import org.nanotek.crawler.data.domain.meta.Id;
+import org.nanotek.crawler.data.domain.meta.MetaClass;
+import org.nanotek.crawler.data.domain.meta.MetaDataAttribute;
 import org.nanotek.crawler.data.util.Holder;
 import org.nanotek.crawler.data.util.db.JdbcHelper;
 import org.nanotek.crawler.data.util.graph.actuator.mappings.mb.DispatcherServlet;

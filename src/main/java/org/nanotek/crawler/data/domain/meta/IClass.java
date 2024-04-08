@@ -1,4 +1,4 @@
-package org.nanotek.crawler.data.config.meta;
+package org.nanotek.crawler.data.domain.meta;
 
 import java.util.List;
 
@@ -16,10 +16,5 @@ public interface IClass {
 
 	boolean addMetaAttribute(MetaDataAttribute attr);
 
-	void hasPrimaryKey(boolean b);
-
-	boolean isHasPrimeraryKey();
-
-	void setHasPrimeraryKey(boolean hasPrimeraryKey);
 
 }

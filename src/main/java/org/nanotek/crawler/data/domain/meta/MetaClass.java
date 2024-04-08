@@ -1,4 +1,4 @@
-package org.nanotek.crawler.data.config.meta;
+package org.nanotek.crawler.data.domain.meta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import schemacrawler.schema.Table;
 
+/*
+ * TODO: refactor code of definition for IdPrimaryKey classification.
+ */
 @JsonInclude(value = Include.NON_NULL)
 public class MetaClass implements IClass {
 
@@ -22,23 +25,22 @@ public class MetaClass implements IClass {
 	protected List<MetaDataAttribute> metaAttributes = new ArrayList<>();
 
 	@JsonIgnore
-	private boolean hasPrimraryKey;
-
-	@JsonIgnore
-	protected Table table;
-
-	@JsonIgnore
-	protected List<MetaRelationClass> metaRelationsClasses;
-
+	protected MetaClassClassifier classifier;
+	
+	/*
+	 * @JsonIgnore private boolean hasPrimraryKey;
+	 * 
+	 * @JsonIgnore protected List<MetaRelationClass> metaRelationsClasses;
+	 */
 	protected MetaIdentity identity;
 	
 	@JsonIgnore
-	private List<Table> referencedTables;
+	protected RdbmsClass rdbmsClass;
 	
 	public MetaClass() {
 		super();
-		this.referencedTables=new ArrayList<>();
-		metaRelationsClasses = new ArrayList<> ();
+		classifier = new MetaClassClassifier ();
+		this.rdbmsClass = new RdbmsClass();
 	}
 
 	public MetaClass(String tableName, String className, 
@@ -47,7 +49,8 @@ public class MetaClass implements IClass {
 		this.tableName = tableName;
 		this.className = className;
 		this.metaAttributes = metaAttributes;
-		this.referencedTables=new ArrayList<>();
+		this.rdbmsClass = new RdbmsClass();
+		classifier = new MetaClassClassifier ();
 	}
 
 	
@@ -57,8 +60,8 @@ public class MetaClass implements IClass {
 		super();
 		this.tableName = tableName;
 		this.className = className;
-		this.table = table;
-		this.referencedTables=new ArrayList<>();
+		this.rdbmsClass = new RdbmsClass(table);
+		classifier = new MetaClassClassifier ();
 	}
 
 	@Override
@@ -91,36 +94,26 @@ public class MetaClass implements IClass {
 		return metaAttributes.add(attr);
 	}
 
-	@Override
-	public void hasPrimaryKey(boolean b) {
-		this.hasPrimraryKey = b;
-	}
-
-	@Override
-	public boolean isHasPrimeraryKey() {
+	public boolean isHasPrimaryKey() {
 		return  metaAttributes !=null && metaAttributes.stream().filter(a -> a.isId()).count() > 0;
 	}
-
-	@Override
-	public void setHasPrimeraryKey(boolean hasPrimeraryKey) {
-		this.hasPrimraryKey = hasPrimeraryKey;
+	
+	public RdbmsClass getRdbmsClass() {
+		return rdbmsClass;
 	}
 
-	public void setTable(Table t) {
-		this.table = t;
-	}
-
-	public Table getTable() {
-		return table;
+	public void setRdbmsClass(RdbmsClass rdbmsClass) {
+		this.rdbmsClass = rdbmsClass;
 	}
 
 	public void addMetaRelationClass(MetaRelationClass mrc) {
-		this.metaRelationsClasses.add(mrc);
+		this.classifier.addMetaRelationClass(mrc);
 		
 	}
 
+	@JsonIgnore
 	public List<MetaRelationClass> getMetaRelationsClasses() {
-		return metaRelationsClasses;
+		return this.classifier.getMetaRelationsClasses();
 	}
 
 	public MetaIdentity getIdentity() {
@@ -136,14 +129,14 @@ public class MetaClass implements IClass {
 	}
 
 	public void setMetaRelationsClasses(List<MetaRelationClass> metaRelationsClasses) {
-		this.metaRelationsClasses = metaRelationsClasses;
+		this.classifier.setMetaRelationsClasses(metaRelationsClasses);
+	}
+	
+	public MetaClassClassifier getClassifier() {
+		return classifier;
 	}
 
-	public void addReferencedTable(Table referencedTable) {
-		this.referencedTables.add(referencedTable);
-	}
-
-	public List<Table> getReferencedTables() {
-		return referencedTables;
+	public void setClassifier(MetaClassClassifier classifier) {
+		this.classifier = classifier;
 	}
 }

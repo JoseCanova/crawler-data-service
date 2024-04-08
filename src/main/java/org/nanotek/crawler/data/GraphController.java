@@ -3,8 +3,8 @@ package org.nanotek.crawler.data;
 import java.util.Map;
 
 import org.jgrapht.Graph;
-import org.nanotek.crawler.data.config.meta.MetaEdge;
-import org.nanotek.crawler.data.config.meta.TempClass;
+import org.nanotek.crawler.data.domain.meta.MetaEdge;
+import org.nanotek.crawler.data.domain.meta.TempClass;
 import org.nanotek.crawler.service.GraphRelationsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

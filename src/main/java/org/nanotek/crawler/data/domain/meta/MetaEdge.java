@@ -1,4 +1,4 @@
-package org.nanotek.crawler.data.config.meta;
+package org.nanotek.crawler.data.domain.meta;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;

@@ -33,12 +33,12 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Type;
 import org.nanotek.crawler.Base;
 import org.nanotek.crawler.BaseEntity;
-import org.nanotek.crawler.data.config.meta.IClass;
-import org.nanotek.crawler.data.config.meta.IDataAttribute;
-import org.nanotek.crawler.data.config.meta.MetaClass;
-import org.nanotek.crawler.data.config.meta.MetaDataAttribute;
-import org.nanotek.crawler.data.config.meta.MetaIdentity;
-import org.nanotek.crawler.data.config.meta.MetaRelationClass;
+import org.nanotek.crawler.data.domain.meta.IClass;
+import org.nanotek.crawler.data.domain.meta.IDataAttribute;
+import org.nanotek.crawler.data.domain.meta.MetaClass;
+import org.nanotek.crawler.data.domain.meta.MetaDataAttribute;
+import org.nanotek.crawler.data.domain.meta.MetaIdentity;
+import org.nanotek.crawler.data.domain.meta.MetaRelationClass;
 import org.nanotek.crawler.data.util.db.support.MetaClassPostProcessor;
 import org.nanotek.crawler.legacy.util.Holder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -358,7 +358,7 @@ public class DbSchemaHelper {
 		return new AnnotationDescription[] {
 				AnnotationDescription.Builder.ofType(Id.class)
 						.build(),
-						AnnotationDescription.Builder.ofType(org.nanotek.crawler.data.config.meta.Id.class)
+						AnnotationDescription.Builder.ofType(org.nanotek.crawler.data.domain.meta.Id.class)
 						.build()
 						}; 
 	}
@@ -484,7 +484,7 @@ public class DbSchemaHelper {
 		.forEach(f ->{
 			processForeignKey(f , meta);
 		});
-		meta.setTable(t);
+		meta.getRdbmsClass(). setTable(t);
 		meta.setClassName(t.getFullName());
 		String newName = processNameTranslationStrategy(t.getName());
 		meta.setClassName(newName);
@@ -530,12 +530,12 @@ public class DbSchemaHelper {
 		meta.getMetaRelationsClasses()
 		.stream()
 		.forEach(c -> {
-			if(c.getPrimaryKeyTable().equals(meta.getTable())) {
+			if(c.getPrimaryKeyTable().equals(meta.getRdbmsClass(). getTable())) {
 				c.getColumns()
 				.stream()
 				.forEach(cc ->{
 					if (cc.getName().equalsIgnoreCase(md.getColumnName())) {
-						meta.addReferencedTable(c.getReferencedTable());
+						meta.getRdbmsClass(). addReferencedTable(c.getReferencedTable());
 					}
 				});
 			}

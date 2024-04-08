@@ -3,7 +3,7 @@ package org.nanotek.crawler.data.util.db.support;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.nanotek.crawler.data.config.meta.IClass;
+import org.nanotek.crawler.data.domain.meta.IClass;
 import org.nanotek.crawler.data.util.db.JdbcHelper;
 
 public class IdClassAttributeStrategyPostProcessor implements MetaClassProcessor<IClass> {

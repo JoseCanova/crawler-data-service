@@ -18,7 +18,7 @@ import javax.persistence.spi.PersistenceProvider;
 import javax.sql.DataSource;
 
 import org.hibernate.cfg.Environment;
-import org.nanotek.crawler.data.config.meta.MetaClass;
+import org.nanotek.crawler.data.domain.meta.MetaClass;
 import org.nanotek.crawler.data.stereotype.EntityBaseRepositoryImpl;
 import org.nanotek.crawler.data.util.InstancePopulator;
 import org.nanotek.crawler.data.util.SearchContextPayloadFilter;
@@ -212,7 +212,7 @@ public class DynamicPersistentUnitConfig implements ApplicationContextAware{
 		List <MetaClass> classMap  = helper.getClassMaps();
 
 		classMap 
-		.stream().filter(cm -> cm.isHasPrimeraryKey())
+		.stream().filter(cm -> cm.isHasPrimaryKey())
 		.filter(cm -> !cm.getClass().equals(java.sql.RowId.class))
 		.forEach(cm ->{
 			try {

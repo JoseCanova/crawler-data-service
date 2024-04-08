@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.nanotek.crawler.data.config.meta.MetaDataAttribute;
+import org.nanotek.crawler.data.domain.meta.MetaDataAttribute;
 import org.nanotek.crawler.data.stereotype.Introspection;
 import org.nanotek.crawler.data.stereotype.Introspector;
 import org.nanotek.crawler.data.util.MutatorSupport;

@@ -9,7 +9,7 @@ import java.util.Optional;
 import javax.persistence.Entity;
 
 import org.nanotek.crawler.data.MetaDataController;
-import org.nanotek.crawler.data.config.meta.IClass;
+import org.nanotek.crawler.data.domain.meta.IClass;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
