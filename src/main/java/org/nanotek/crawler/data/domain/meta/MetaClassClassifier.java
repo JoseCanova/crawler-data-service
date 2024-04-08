@@ -8,10 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class MetaClassClassifier implements Classifier<MetaClass> {
 
-	@JsonIgnore
 	protected boolean hasPrimaryKey;
 
-	@JsonIgnore
 	protected List<MetaRelationClass> metaRelationsClasses;
 	
 	public MetaClassClassifier() {

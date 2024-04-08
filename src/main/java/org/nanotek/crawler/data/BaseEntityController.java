@@ -66,7 +66,8 @@ extends RepositoryBaseController<T , B> // , SimpleRepresentationModelAssembler<
 
 	@GetMapping(path="/metaclass" ,  produces= {MediaType.APPLICATION_JSON_VALUE})
 	default ResponseEntity<IClass> produceMetaClass(){
-		return ResponseEntity.ok(getMetaClass());
+		IClass meta = getMetaClass();
+		return ResponseEntity.ok(meta);
 	}
 	
 	default ObjectMapper getObjectMapper()

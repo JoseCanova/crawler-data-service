@@ -111,6 +111,7 @@ public class MetaClass implements IClass {
 		
 	}
 
+	@JsonIgnore
 	public List<MetaRelationClass> getMetaRelationsClasses() {
 		return this.classifier.getMetaRelationsClasses();
 	}
@@ -131,4 +132,11 @@ public class MetaClass implements IClass {
 		this.classifier.setMetaRelationsClasses(metaRelationsClasses);
 	}
 	
+	public MetaClassClassifier getClassifier() {
+		return classifier;
+	}
+
+	public void setClassifier(MetaClassClassifier classifier) {
+		this.classifier = classifier;
+	}
 }
